@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate") %>
+  <body>
+    <h1 class="font-bold mb-4 font-sans justify-center align-middle text-center text-2xl">Create a New Listing</h1>
+    <br>
+    <form method="POST" action="/listings" class="max-w-lg mx-auto needs-validation" enctype="multipart/form-data" novalidate>
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+            <input name="listing[title]" required placeholder="Enter title" type="text" class="form-control mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid title.</div>
+        </div>
+
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea name="listing[description]" required class="form-control mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid description.</div>
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-sm font-medium text-gray-700">Price (in &#8377;)</label>
+            <input name="listing[price]" required placeholder="enter price" id="price" type="number" step=".01" min="0" class="form-control mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid amount.</div>
+        </div>
+        <div class="mb-4">
+            <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+            <input name="listing[image]" required placeholder="enter image URL/Link" id="image" type="file" class="form-control mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid image file.</div>
+        </div>
+        <div class="mb-4">
+            <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+            <input name="listing[location]" required placeholder="enter location" type="text" class="form-control  p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid location.</div>
+        </div>
+        <div class="mb-4">
+            <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+            <input name="listing[country]" required placeholder="enter country" class="form-control mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" />
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please enter a valid country.</div>
+        </div>
+        <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 focus:outline-none focus:bg-red-600">Add</button>
+    </form>
+  </body>
+

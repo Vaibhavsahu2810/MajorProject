@@ -1,0 +1,138 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <!-- <h2>All Listing</h2> -->
+    <div class="filters pt-3 pb-2 flex flex-wrap !font-medium">
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/vczwnict.json"
+            trigger="hover"
+            style="width:2rem;height:2rem">
+        </lord-icon>
+            <p class="!font-bold">Trending</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/tvtuqnug.json"
+            trigger="hover"
+            style="width:2rem;height:2rem">
+            </lord-icon>
+            <p>Ocean</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/mhwjrnuv.json"
+            trigger="hover"
+            style="width:2rem;height:2rem">
+            </lord-icon>
+            <p>Park</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+    src="https://cdn.lordicon.com/mhoutfqj.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+            <p>Dubai</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/qeltvbrs.json"
+            trigger="hover"
+            style="width:2rem;height:2rem">
+        </lord-icon>
+            <p>Simple</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/wejhmmqt.json"
+            trigger="hover"
+            style="width:2rem;height:2rem">
+        </lord-icon>
+            <p>Cold</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+    src="https://cdn.lordicon.com/zoerqmpd.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+            <p>Season</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+    src="https://cdn.lordicon.com/velcigpn.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+        </lord-icon>
+            <p>Archery</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+    src="https://cdn.lordicon.com/dqrpfjei.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+            <p>Gaming</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+    src="https://cdn.lordicon.com/tltikfri.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+            <p>Random</p>
+        </div>
+        <div class="filter text-xs pr-8 text-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/zlwcoefs.json"
+    trigger="hover"
+    style="width:2rem;height:2rem">
+</lord-icon>
+        </lord-icon>
+            <p>Meteor Shower</p>
+        </div>
+        <div class="border border-black rounded-lg p-2 mb-3">
+            <div class="flex items-center">
+                <input id="flexSwitchCheckChecked" type="checkbox" class="w-5 h-5 !text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="flexSwitchCheckChecked"  class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Display price after taxes</label>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 flex flex-wrap">
+    <% for(let item of allList){ %>
+        <a href="/listings/<%= item._id %>" class="no-underline">
+        <div class="card col border-none !important mb-8  flex flex-wrap" style="width: 17rem;">
+            <img src="<%= item.image.url %>" class="card-img-top w-full h-64" alt="...">
+            <div class="card-img-overlay opacity-0"></div>
+            <div class="card-body">
+              <p class="card-text font-normal"><b><%=  item.title %> </b><br> &#8377; <%=item.price.toLocaleString("en-IN") %> / night &nbsp; &nbsp; <i class="gst">+18% GST</i></p>
+            </div>
+          </div>
+        </a>
+    <%} %>
+</div>
+    <!-- <form action="/listings/new" method="get">
+        <button>create new list</button>
+    </form> -->
+</body>
+
+<script>
+    let taxButton = document.getElementById("flexSwitchCheckChecked");
+    taxButton.addEventListener("click", function () {
+      if (taxButton.checked) {
+        alert('Taxes included');
+        let  items = document.getElementsByClassName("gst");
+        for(item of items){
+            item.style.display='inline';
+        }
+      } else {
+        alert('No Taxes included');
+        let  items = document.getElementsByClassName("gst");
+        for(item of items){
+            item.style.display='none';
+        }
+      };
+    });
+</script>

@@ -1,0 +1,101 @@
+<% layout("/layouts/boilerplate") %>
+  <body class="bg-gray-100 dark:bg-gray-900">
+    <h3 class="text-2xl font-bold mb-4 justify-center flex flex-auto"><%= item.title %></h3>
+
+    <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
+        <a href="#">
+            <img class="rounded-t-lg object-cover h-80 w-full" src="<%= item.image.url %>" alt="Listing Image" />
+        </a>
+        <div class="p-5">
+            <p class="p-0 m-0">Owned by <%=item.owner.username %></p>
+            <p class="text-sm text-gray-700 dark:text-gray-400 mb-3"><%= item.description %></p>
+            <p class="p-0 m-0">&#8377; <%=item.price.toLocaleString("en-IN") %> / night</p>
+            <p class="p-0 m-0"><%= item.location %></p>
+            <p class="p-0 m-0"><%= item.country %></p>
+        </div>
+    </div>
+    <!-- -->
+    <% if(currUser && currUser._id.equals(item.owner._id)) { %>
+    <div class="flex flex-wrap -mx-2 justify-center">
+    <form action="/listings/<%= item._id %>/edit" method="get" class="mt-4 mr-4">
+        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-6">
+            Edit
+        </button>
+    </form>
+    <form method="POST" action="/listings/<%=item._id%>?_method=DELETE">
+        <button class="mt-6 bg-black hover:bg-black text-white font-bold py-2 px-4 rounded mr-80">
+            Delete
+        </button>
+    </form>
+</div>
+<% } %>
+<!--  -->
+<br>
+<hr>
+<% if(currUser){ %>
+<div class="col-8 offset-3 mb-3 justify-center">
+    <h4 class="mb-4">Leave a review</h4>
+    <form action="/listings/<%= item._id %>/reviews" class="needs-validation" novalidate method="post">
+        <!-- <div class="mb-4">
+            
+            <input type="range" name="review[rating]" min="1" max="5" id="rating">
+        </div> -->
+        <div class="mb-4">
+            <label for="rating" class="form-label">Rating</label>
+        <fieldset class="starability-slot">
+            
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>  
+        <div class="mb-4">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea name="review[comment]" id="comment" cols="20" rows="5" required class="form-control"></textarea>
+            <div class="valid-feedback">Looks good!!</div>
+            <div class="invalid-feedback">Please add some comment for review!!</div>
+        </div>
+        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-6">Submit</button>
+    </form>
+</div>
+<% } %>
+<% if(item.reviews.length > 0){ %>
+<div class="reviews mt-8 col-8 offset-3 mb-3">
+    <h4 class="mb-4 text-lg font-semibold">All reviews</h4>
+    <ul class="flex flex-wrap">
+        <% for(review of item.reviews){ %>
+            <li class="w-auto">
+                <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= review.author.username %></h5>
+                    
+                    <p class="starability-result card-text" data-rating="<%= review.rating %>">
+                      </p>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= review.comment %></p>
+                    <form action="/listings/<%= item._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                    <button class="mt-2 bg-black hover:bg-black text-sm text-white font-bold py-1 px-2 rounded">Delete</button>
+                </form>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</div>
+<% } %>
+<div class="col-8 offset-3 mb-3">
+    <h3>Where you'ill be</h3>
+    <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224346.32835516133!2d77.20898509999999!3d28.5273522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1711454462536!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<br>
+<hr>
+  </body>
+</html>
