@@ -82,7 +82,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 
 app.get("/", (req,res) =>{
-    res.send("HLO HI AM HERE");
+    res.redirect("/listings");
 });
 
 
