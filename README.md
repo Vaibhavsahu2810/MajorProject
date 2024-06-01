@@ -21,6 +21,9 @@ Visit the website: [Tripz Listings](https://tripz.onrender.com/listings)
 - **Search Functionality:** Easily find specific listings based on your preferences.
 - **Responsive Design:** Enjoy a seamless experience on both desktop and mobile devices.
 - **Interactive UI:** Engage with a user-friendly interface designed for smooth navigation.
+- **CRUD Operations:** Perform Create, Read, Update, and Delete operations on listings.
+- **User Authentication:** Secure user authentication using bcrypt for password hashing.
+- **Image Uploads:** Seamlessly upload and manage images using Cloudinary.
 
 ## Libraries and Tools Used
 
@@ -35,12 +38,13 @@ Visit the website: [Tripz Listings](https://tripz.onrender.com/listings)
 - **bcrypt:** For password hashing and security.
 - **Google Icons:** For enhancing UI with easily recognizable icons.
 - **Google Fonts:** For incorporating beautiful and customizable fonts.
+- **Cloudinary:** For handling image uploads and storage.
 
 ## Installation and Setup
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/Vaibhavsahu2810/MajorProject.git
+    git clone https://github.com/your-username/tripz.git
     cd tripz
     ```
 
@@ -53,6 +57,9 @@ Visit the website: [Tripz Listings](https://tripz.onrender.com/listings)
     Create a `.env` file in the root directory and add your MongoDB connection string and other necessary configuration.
     ```env
     MONGODB_URI=your_mongodb_uri
+    CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+    CLOUDINARY_API_KEY=your_cloudinary_api_key
+    CLOUDINARY_API_SECRET=your_cloudinary_api_secret
     PORT=3000
     ```
 
